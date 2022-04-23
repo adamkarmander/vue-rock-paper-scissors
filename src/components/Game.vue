@@ -20,17 +20,34 @@ export default {
       const randomChoice = choices[Math.floor(Math.random() * choices.length)];
       return randomChoice;
     },
+    getWinner(userChoice, computerChoice) {
+      switch (userChoice + computerChoice) {
+        case 'rockscissors':
+        case 'paperrock':
+        case 'scissorspaper':
+          return 'You win!';
+        case 'rockpaper':
+        case 'paperscissors':
+        case 'scissorsrock':
+          return 'Computer wins!';
+        default:
+          return "It's a draw!";
+      }
+    },
     displayResults(e) {
       let userChoice = e.target.id;
       let computerChoice = this.generateComputerChoice();
-      console.log('userChoice', userChoice);
-      console.log('computerChoice', computerChoice);
 
       const userChoiceDisplay = document.createElement('h1');
       userChoiceDisplay.innerHTML = 'Your choice: ' + userChoice;
+
       const computerChoiceDisplay = document.createElement('h1');
       computerChoiceDisplay.innerHTML = "Computer's choice: " + computerChoice;
-      document.getElementById('results').append(userChoiceDisplay, computerChoiceDisplay);
+
+      const winnerDisplay = document.createElement('h1');
+      winnerDisplay.innerHTML = this.getWinner(userChoice, computerChoice);
+
+      document.getElementById('results').append(userChoiceDisplay, computerChoiceDisplay, winnerDisplay);
     }
   }
 }
