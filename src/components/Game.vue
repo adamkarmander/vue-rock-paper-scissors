@@ -1,9 +1,10 @@
 <template>
   <div id="gameContainer">
     <h1>Please choose one of the following:</h1>
-    <button class="myButton">Rock ✊</button>
-    <button class="myButton">Paper ✋</button>
-    <button class="myButton">Scissors ✌️</button>
+    <button class="myButton" id="rock" @click="displayResults($event)">Rock ✊</button>
+    <button class="myButton" id="paper" @click="displayResults($event)">Paper ✋</button>
+    <button class="myButton" id="scissors" @click="displayResults($event)">Scissors ✌️</button>
+    <div id="results" />
   </div>
 </template>
 
@@ -12,6 +13,25 @@ export default {
   name: 'Game',
   props: {
 
+  },
+  methods: {
+    generateComputerChoice() {
+      const choices = ['rock', 'paper', 'scissors'];
+      const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+      return randomChoice;
+    },
+    displayResults(e) {
+      let userChoice = e.target.id;
+      let computerChoice = this.generateComputerChoice();
+      console.log('userChoice', userChoice);
+      console.log('computerChoice', computerChoice);
+
+      const userChoiceDisplay = document.createElement('h1');
+      userChoiceDisplay.innerHTML = 'Your choice: ' + userChoice;
+      const computerChoiceDisplay = document.createElement('h1');
+      computerChoiceDisplay.innerHTML = "Computer's choice: " + computerChoice;
+      document.getElementById('results').append(userChoiceDisplay, computerChoiceDisplay);
+    }
   }
 }
 </script>
