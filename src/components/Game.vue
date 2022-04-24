@@ -16,7 +16,11 @@ export default {
   },
   methods: {
     generateComputerChoice() {
-      const choices = ['rock', 'paper', 'scissors'];
+      const choices = [
+        {key: 'rock', value: 'Rock ✊'}, 
+        {key: 'paper', value: 'Paper ✋'}, 
+        {key: 'scissors', value: 'Scissors ✌️'}
+      ];
       const randomChoice = choices[Math.floor(Math.random() * choices.length)];
       return randomChoice;
     },
@@ -35,17 +39,17 @@ export default {
       }
     },
     displayResults(e) {
-      let userChoice = e.target.id;
+      let userChoice = e.target;
       let computerChoice = this.generateComputerChoice();
 
       const userChoiceDisplay = document.createElement('h1');
-      userChoiceDisplay.innerHTML = 'Your choice: ' + userChoice;
+      userChoiceDisplay.innerHTML = 'Your choice: ' + userChoice.innerHTML;
 
       const computerChoiceDisplay = document.createElement('h1');
-      computerChoiceDisplay.innerHTML = "Computer's choice: " + computerChoice;
+      computerChoiceDisplay.innerHTML = "Computer's choice: " + computerChoice.value;
 
       const winnerDisplay = document.createElement('h1');
-      winnerDisplay.innerHTML = this.getWinner(userChoice, computerChoice);
+      winnerDisplay.innerHTML = this.getWinner(userChoice.id, computerChoice.key);
 
       document.getElementById('results').append(userChoiceDisplay, computerChoiceDisplay, winnerDisplay);
     }
