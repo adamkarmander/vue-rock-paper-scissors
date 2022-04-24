@@ -11,9 +11,6 @@
 <script>
 export default {
   name: 'Game',
-  props: {
-
-  },
   methods: {
     generateComputerChoice() {
       const choices = [
@@ -51,6 +48,7 @@ export default {
       const winnerDisplay = document.createElement('h1');
       winnerDisplay.innerHTML = this.getWinner(userChoice.id, computerChoice.key);
 
+      document.getElementById('results').innerHTML = "";
       document.getElementById('results').append(userChoiceDisplay, computerChoiceDisplay, winnerDisplay);
     }
   }
