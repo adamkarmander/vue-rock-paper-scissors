@@ -1,7 +1,7 @@
 <template>
   <h1 id="title">Vue Rock Paper Scissors</h1>
-  <Score userScore="0" computerScore="0"/>
-  <Game />
+  <Score :userScore="userScore" :computerScore="computerScore"/>
+  <Game @changed="updateScore" />
 </template>
 
 <script>
@@ -13,6 +13,23 @@ export default {
   components: {
     Score,
     Game
+  },
+  data() {
+    return {
+      userScore: 0,
+      computerScore: 0
+    };
+  },
+  methods: {
+    updateScore(winner) {
+      if (winner === 'user') {
+        this.userScore += 1;
+      }
+      else 
+      {
+        this.computerScore += 1;
+      }
+    }
   }
 }
 </script>

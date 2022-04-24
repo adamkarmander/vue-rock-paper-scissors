@@ -26,10 +26,12 @@ export default {
         case 'rockscissors':
         case 'paperrock':
         case 'scissorspaper':
+          this.$emit('changed', 'user');
           return 'You win!';
         case 'rockpaper':
         case 'paperscissors':
         case 'scissorsrock':
+          this.$emit('changed', 'computer');
           return 'Computer wins!';
         default:
           return "It's a draw!";
